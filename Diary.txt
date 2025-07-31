@@ -1,0 +1,51 @@
+
+*** DEV DIARY ***
+
+Why did I create NotaMy?
+-------------------------
+
+It all started with my passion for Linux and cybersecurity.
+
+Back when I was getting into CTFs and wargames, I had a constant problem:
+where the hell do I put all the info I find — and how do I keep it organized?
+
+I mean, every time I needed something, I ended up digging through
+a jungle of random files and folders spread all over my system.
+
+On top of that, I work mostly in the terminal, and I really didn’t want
+to keep switching between tools or opening GUI apps just to take a note.
+
+So I thought: I need something simple. Lightweight. No distractions.
+Just a tool where I can quickly jot something down,
+and then actually find it later without wondering when, where, or why I saved it.
+
+In 2020, I made the first version — called it “Note Management”.
+Pretty basic stuff: it just dumped some structured text into a file.
+No hierarchy, no bells and whistles.  
+And guess what? It actually helped.
+
+After that, I built MemoKeeper, and then MemoKeeperX — a bit more advanced.
+You could split notes into files, use tags, group stuff by topics, and so on.
+
+And over time… I just started using it for everything:
+pentesting, studying, random ideas, small projects — you name it.
+
+It became part of my workflow.  
+And no, it’s not just “creator bias” — it was genuinely useful.
+
+So here comes NotaMy: a full rewrite of MemoKeeperX,
+with some added features, a cleaner syntax,
+and the same goal as always: make it dead simple to store and find your notes,
+**without ever leaving the terminal**.
+
+Why am I publishing it?
+------------------------
+
+Well, I’m not some expert dev — I do my best.  
+But hey, maybe someone cooler than me will see the potential in the idea
+and build on it.
+
+Who knows — one day you might use **your** own version of NotaMy.
+A simple, clean, no-bullshit tool that just does the job.
+
+That’s the dream :)

@@ -1,0 +1,15 @@
+
+# Compilation folders
+bin/
+build/
+
+# Object and binary files
+*.o
+*.obj
+*.out
+*.exe
+*.elf
+*.a
+*.so
+*.dll
+*.lib
