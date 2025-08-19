@@ -47,10 +47,10 @@ void write_key( char *password, size_t max_size );
 void generate_SHA512( const char *input, char *output );
 
 // Encrypts fields in the context
-void encrypt( const char *passwd, Protect *ctx, char *key );
+void protect_encrypt( const char *passwd, Protect *ctx, char *key );
 
 // Decrypts fields in the context
-void decrypt( const char *passwd, Protect *ctx, char *key );
+void protect_decrypt( const char *passwd, Protect *ctx, char *key );
 
 // Masks sensitive fields in the context with asterisks
 void mask( Protect *ctx );

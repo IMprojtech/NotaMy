@@ -173,7 +173,7 @@ void print_all( TreeNode *root, int depth, AppGlobal *app, char *Passwd, char *K
     if ( app->NDat.Protection ) {
         init_ctx_from_ndat( &app->ctx, &app->NDat );
         if ( app->opts.with_protection )
-            decrypt( Passwd, &app->ctx, Key );
+            protect_decrypt( Passwd, &app->ctx, Key );
         else
             mask( &app->ctx );
     }
@@ -189,7 +189,7 @@ void print_list( TreeNode *root, int depth, AppGlobal *app, char *Passwd, char *
     if ( app->NDat.Protection ) {
         init_ctx_from_ndat( &app->ctx, &app->NDat );
         if ( app->opts.with_protection )
-            decrypt( Passwd, &app->ctx, Key );
+            protect_decrypt( Passwd, &app->ctx, Key );
         else
             mask( &app->ctx );
     }
@@ -208,7 +208,7 @@ void print_find( TreeNode *root, char *key, find_function fn, AppGlobal *app, ch
         if ( app->NDat.Protection ) {
             init_ctx_from_ndat( &app->ctx, &app->NDat );
             if ( app->opts.with_protection )
-                decrypt( Passwd, &app->ctx, Key );
+                protect_decrypt( Passwd, &app->ctx, Key );
             else
                 mask( &app->ctx );
         }
@@ -227,7 +227,7 @@ void print_children( TreeNode *parent, AppGlobal *app, char *Passwd, char *Key )
     if ( app->NDat.Protection ) {
         init_ctx_from_ndat( &app->ctx, &app->NDat );
         if ( app->opts.with_protection )
-            decrypt( Passwd, &app->ctx, Key );
+            protect_decrypt( Passwd, &app->ctx, Key );
         else
             mask( &app->ctx );
     }
@@ -244,7 +244,7 @@ void print_sibling( TreeNode *parent, AppGlobal *app, char *Passwd, char *Key ) 
     if ( app->NDat.Protection ) {
         init_ctx_from_ndat( &app->ctx, &app->NDat );
         if ( app->opts.with_protection )
-            decrypt( Passwd, &app->ctx, Key );
+            protect_decrypt( Passwd, &app->ctx, Key );
         else
             mask( &app->ctx );
     }
