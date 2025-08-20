@@ -174,7 +174,7 @@ static void decrypt_data( char *str, size_t len, const char *key ) {
 
 // --------------------------------------
 /***** Encrypts fields in the context *****/
-void encrypt( const char *passwd, Protect *ctx, char *key ) {
+void protect_encrypt( const char *passwd, Protect *ctx, char *key ) {
     *( ctx->protection ) = true;
     generate_random_iv( ctx->iv, IV_SIZE );
     generate_key( passwd, ctx->iv, key );
@@ -187,7 +187,7 @@ void encrypt( const char *passwd, Protect *ctx, char *key ) {
 
 // --------------------------------------
 /***** Decrypts fields in the context *****/
-void decrypt( const char *passwd, Protect *ctx, char *key ) {
+void protect_decrypt( const char *passwd, Protect *ctx, char *key ) {
     generate_key( passwd, ctx->iv, key );
 
     decrypt_data( ctx->comment, strlen( ctx->comment ), key );

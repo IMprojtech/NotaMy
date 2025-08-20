@@ -59,7 +59,7 @@ void controller( char *SetFile, char *Passwd, char *Key, AppGlobal *app ) {
 
         if ( app->opts.with_protection == true ) {
             init_ctx_from_ndat( &app->ctx, &app->NDat );
-            encrypt( Passwd, &app->ctx, Key );
+            protect_encrypt( Passwd, &app->ctx, Key );
         }
 
         copy_ndat( &tmpNDat, &app->NDat );
@@ -255,7 +255,7 @@ void controller( char *SetFile, char *Passwd, char *Key, AppGlobal *app ) {
         if ( app->NDat.Protection ) {
             init_ctx_from_ndat( &app->ctx, &app->NDat );
             if ( app->opts.with_protection )
-                decrypt( Passwd, &app->ctx, Key );
+                protect_decrypt( Passwd, &app->ctx, Key );
             else {
                 fprintf( stderr, "[ERROR] protected \n" );
                 exit( EXIT_FAILURE );
@@ -284,7 +284,7 @@ void controller( char *SetFile, char *Passwd, char *Key, AppGlobal *app ) {
 
         if ( app->opts.with_protection == true ) {
             init_ctx_from_ndat( &app->ctx, &app->NDat );
-            encrypt( Passwd, &app->ctx, Key );
+            protect_encrypt( Passwd, &app->ctx, Key );
         }
 
         copy_ndat( &tmpNDat, &app->NDat );
