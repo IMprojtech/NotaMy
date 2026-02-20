@@ -121,5 +121,6 @@ void edit( AppGlobal *app ) {
     app->NDat.Body[i] = '\0';
 
     fclose( fp );
-    remove( "Edit.tmp" );
+	if (access(app->cfg.file_note,F_OK) == 0)
+		remove( "Edit.tmp" );
 }
