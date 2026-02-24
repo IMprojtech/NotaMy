@@ -3,9 +3,21 @@
 
 # 📒 `NotaMy` Documentation
 
-`NotaMy` (`ntm`) is a **command-line tool** for the **hierarchical management of notes, files, and personal information**. It organizes your entries using a **tree structure** with **tags**, **keywords**, and **unique hashes**, making it easy to add, edit, search, and view data.
+NotaMy (ntm) is a command-line tool for hierarchical management of technical knowledge and work contexts.
 
-> Perfect for terminal-based users looking for a fast, flexible, and structured way to store and access information.
+It organizes information into note files (contexts) structured as node trees.
+Each node may contain:
+
+* an identifying tag
+* a short comment
+* an extended text body
+* searchable keywords
+* file references
+* a unique hash
+
+The system allows insertion, modification, visualization, and structured search of information directly from the shell.
+
+> NotaMy is designed to support long-term technical workflows, keeping contexts separated and reducing information dispersion.
 
 ---
 
@@ -20,71 +32,71 @@ ntm [COMMAND] [OPTIONS]               # Simple command (e.g., find, help)
 
 ## 🧭 AVAILABLE COMMANDS
 
-| Command    | Subcommand | Description                                                  |
-| ---------- | ---------- | ------------------------------------------------------------ |
-| `add`      | `note`     | Adds a new note                                              |
-|            | `file`     | Adds a new archive note file                                 |
-| `view`     | `note`     | Displays saved notes                                         |
-|            | `file`     | Lists available note files                                   |
-|            | `tag`      | Shows the tag hierarchy                                      |
-| `find`     |            | Searches notes by criteria (tag, hash, keywords, date, etc.) |
-| `modify`   |            | Modifies an existing note                                    |
-| `organize` |            | Moves a note within the hierarchy                            |
-| `remove`   |            | Deletes a note                                               |
-| `setting`  |            | Sets a note file as active                                   |
-| `editor`   |            | Sets the text editor (`vim`, `nano`, `nul`)                  |
-| `backup`   |            | Creates a backup of the active note file                     |
-| `help`     |            | Displays general help                                        |
+| Command    | Subcommand | Description                                                            |
+| ---------- | ---------- | ---------------------------------------------------------------------- |
+| `add`      | `note`     | Insert a new note                                                      |
+|            | `file`     | Add a new note archive file                                            |
+| `view`     | `note`     | Display existing notes                                                 |
+|            | `file`     | Display available note files                                           |
+|            | `tag`      | Show tag hierarchy                                                     |
+| `find`     |            | Search one or more notes by criteria (tag, hash, keywords, date, etc.) |
+| `modify`   |            | Modify an existing note                                                |
+| `organize` |            | Move a note within the hierarchy                                       |
+| `remove`   |            | Delete a note                                                          |
+| `setting`  |            | Set a note file as active                                              |
+| `editor`   |            | Set the text editor (`vim`, `nano`, `nul`)                             |
+| `backup`   |            | Create a backup of the active note file                                |
+| `help`     |            | Display general help                                                   |
 
 ---
 
 ## ⚙️ AVAILABLE OPTIONS
 
-> Options vary by command. Common ones are listed below:
+> Options vary depending on the command. Common ones are listed below.
 
 ### `add note`
 
-| Short Option | Long Option    | Description                                    |
-| ------------ | -------------- | ---------------------------------------------- |
-| `-t`         | `--tag`        | Adds a tag (required, default: `"?"`)          |
-| `-c`         | `--comment`    | Adds a comment to the note (required)          |
-| `-k`         | `--keywords`   | Adds one or more space-separated keywords      |
-| `-f`         | `--file`       | Attaches a file                                |
-| `-b`         | `--body`       | Opens the editor to write the note body        |
-| `-i`         | `--input`      | Disables the editor; allows input from `stdin` |
-| `-p`         | `--protection` | Enables encryption for the note                |
+| Short Option | Long Option    | Description                                 |
+| ------------ | -------------- | ------------------------------------------- |
+| `-t`         | `--tag`        | Insert a tag (required, default: `"?"`)     |
+| `-c`         | `--comment`    | Add a note comment (required)               |
+| `-k`         | `--keywords`   | Insert one or more space-separated keywords |
+| `-f`         | `--file`       | Attach a file                               |
+| `-b`         | `--body`       | Open the editor to write the note body      |
+| `-i`         | `--input`      | Disable editor and allow stdin redirection  |
+| `-p`         | `--protection` | Enable note encryption                      |
 
 ### `add file`
 
 | Required Argument | Options        |
 | ----------------- | -------------- |
-| `<path/to/file>`  | `-c` (comment) |
+| `<path/file>`     | `-c` (comment) |
 
 ### `view note`, `view tag`, `view file`
 
-| Short Option | Long Option    | Description                          |
-| ------------ | -------------- | ------------------------------------ |
-| `-e`         | `--extended`   | Extended view (hash, date)           |
-| `-b`         | `--body`       | Shows the body of notes              |
-| `-p`         | `--protection` | Includes protected (encrypted) notes |
+| Short Option | Long Option    | Description                |
+| ------------ | -------------- | -------------------------- |
+| `-e`         | `--extended`   | Extended view (hash, date) |
+| `-b`         | `--body`       | Show note bodies           |
+| `-p`         | `--protection` | Include protected notes    |
 
 ### `find`
 
-| Option           | Description                                      |
-| ---------------- | ------------------------------------------------ |
-| `-t`             | Search by tag                                    |
-| `-h`             | Search by specific hash                          |
-| `-k`             | Search by keywords                               |
-| `-d`             | Search by date (relative or absolute)            |
-| `-f`             | Opens the attached file with the selected editor |
-| `-o`             | Prints the attached file instead of opening it   |
-| `-e`, `-b`, `-p` | Same as in `view` commands                       |
+| Option           | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| `-t`             | Search by tag                                     |
+| `-h`             | Search by specific hash                           |
+| `-k`             | Search by keywords                                |
+| `-d`             | Search by date (relative or absolute)             |
+| `-f`             | Open attached file with configured editor         |
+| `-o`             | Print attached file content instead of opening it |
+| `-e`, `-b`, `-p` | Same as in `view`                                 |
 
 ### `modify`
 
-| Required Argument | Same options as `add note` |
-| ----------------- | -------------------------- |
-| `<hash>`          |                            |
+| Required Argument | Options as in `add note` |
+| ----------------- | ------------------------ |
+| `<hash>`          |                          |
 
 ### `organize`
 
@@ -94,256 +106,343 @@ ntm [COMMAND] [OPTIONS]               # Simple command (e.g., find, help)
 
 ### `remove`
 
-| Required Argument | Description            |
-| ----------------- | ---------------------- |
-| `-t`, `-h`        | Removes by tag or hash |
+| Required Option | Description           |
+| --------------- | --------------------- |
+| `-t`, `-h`      | Remove by tag or hash |
 
 ---
 
-## ✍️ ADDING NOTES
+## ✍️ INSERTING NOTES
 
-### Basic Example
+### Basic example
 
 ```bash
-$ ntm add note -t "tag1" -c "comment" -k "key1 key2" -f "/path/file.txt" -b
+ntm add note -t "tag1" -c "comment" -k "key1 key2" -f "/path/file.txt" -b
 ```
 
-> The selected editor will launch to write the note body.
+> The selected editor will open to write the note body.
 
-### Attaching a File
+### Attaching a file
 
-* Use `-f` followed by the full path or shorthand with `$HOME` or `$(pwd)`:
+Use `-f` followed by a full or abbreviated path using `$HOME` or `$(pwd)`:
 
 ```bash
-$ ntm add note -t "docs" -c "report" -f "$HOME/reports/report.txt"
+ntm add note -t "docs" -c "report" -f "$HOME/reports/report.txt"
 ```
 
-### Adding Keywords
+### Adding keywords
 
-* Use `-k` followed by one or more space-separated keywords:
+Use `-k` followed by one or more space-separated keywords:
 
 ```bash
-$ ntm add note -t "project" -c "description" -k "java API spring"
+ntm add note -t "project" -c "description" -k "java API spring"
 ```
 
-> Keywords improve future searchability and show in `-be` mode.
+> Keywords improve future searches and are visible in `view note -be` mode.
 
-### Using Variables or Dynamic Commands
+### Using variables or dynamic commands
 
-Use environment variables or shell commands to add dynamic info:
+Use environment variables and commands to dynamically insert information:
 
 ```bash
-$ ntm add note -t "log" -c "logged on $(date)"
+ntm add note -t "log" -c "recorded on $(date)"
 ```
 
-### Redirecting Output to Note Body
+### Output redirection
 
-You can pipe output directly into a note:
+You can redirect command output directly into the note body:
 
 ```bash
-$ ls | ntm add note -t "directory" -c "current content" -bi
+ls | ntm add note -t "directory" -c "current content" -bi
 ```
 
-> `-i` is needed to read from stdin.
+> `-i` is required to read from stdin.
 
-### Direct Note Nesting
+### Direct note nesting
 
-Use < or > in tag names to create nested note structures:
+Use special characters `<`, `>` in tags to nest notes:
 
 ```bash
-$ ntm add note -t "projects>API" -c "Note inside API"
+ntm add note -t "projects>API" -c "Note inside API"
 ```
 
 or
 
 ```bash
-$ ntm add note -t "API<projects" -c "Note inside API"
+ntm add note -t "API<projects" -c "Note inside API"
 ```
 
 > Both formats are valid.
 
-### Note Protection
+### Protecting notes
 
-* Use `-p` to encrypt the note:
+Use `-p` to protect a note:
 
 ```bash
-$ ntm add note -t "security" -c "encrypted content" -p
+ntm add note -t "security" -c "encrypted content" -p
 ```
 
 ---
 
-## 🔎 VIEWING & SEARCHING
+## 🔎 VIEWING AND SEARCHING
 
-NotaMy offers powerful search and an intuitive display.
+To provide an efficient user experience, NotaMy focuses on intuitive visualization and powerful search.
 
 ### Tag Overview
 
-To see the tag hierarchy:
+To display the tag hierarchy:
 
 ```bash
-$ ntm view tag
-$ ntm view tag -e   # Shows hashes too
+ntm view tag
+ntm view tag -e   # Also show hashes
 ```
 
-### Note Listing
-
-Use `view note` to list all notes:
+### List Notes
 
 ```bash
-$ ntm view note
+ntm view note
 ```
 
-### Search by Tag, Hash, Keywords, or Date
+### Search by tag, hash, keywords, or date
 
 ```bash
-$ ntm find -t "projects"
-$ ntm find -h "a1b2"
-$ ntm find -k "API spring"
+ntm find -t "projects"
+ntm find -h "a1b2"
+ntm find -k "API spring"
 ```
 
-> Customize view with `-e`, `-b`, `-p`.
+> Customize output with additional options such as `-e`, `-b`, `-p`.
 
-### Time-based Search
+### Time-based search
 
-* **Relative** (use `Y`, `M`, `D`, `h`, `m`, `s`):
+**Relative** (use `Y`, `M`, `D`, `h`, `m`, `s`):
 
 ```bash
-$ ntm find -d 2D    # Last 2 days
+ntm find -d 2D    # Last 2 days
 ```
 
-* **Absolute** (date ranges or specific months):
+**Absolute**:
 
 ```bash
-$ ntm find -d "2024-05"
-$ ntm find -d "2024-01 to 2024-03"
+ntm find -d "2024-05"
+ntm find -d "2024-01 to 2024-03"
 ```
 
-### Expand/Collapse Hierarchy
+### Expanding or reducing hierarchy view
 
 ```bash
-$ ntm find -t "tag1+"    # Expand to children/subchildren
-$ ntm find -t "tag1-"    # Show siblings only
+ntm find -t "tag1+"    # Extend view to children and descendants
+ntm find -t "tag1-"    # Show only siblings
 ```
 
-> Search is **case-insensitive** and **partial** (prefix match if unique).
+> Search is **case-insensitive** and **partial** (prefix is sufficient if unique).
 
 ---
 
 ## 📂 ATTACHED FILE MANAGEMENT
 
-### Open or Print Attached Files
+### Open or print attached files
 
 ```bash
-$ ntm find -ft "tag1"   # Opens file with editor
-$ ntm find -fot "tag1"  # Prints file to terminal
+ntm find -ft "tag1"
+ntm find -fot "tag1"
 ```
 
-> `-o` is required to output to stdout.
+> `-o` is required to write to stdout.
 
 ---
 
-## ✏️ NOTE STRUCTURE & EDITING
+## ✏️ MODIFYING AND STRUCTURE MANAGEMENT
 
-### Modify a Note
-
-```bash
-$ ntm modify "5b43" -t "new_tag" -c "new comment"
-$ ntm modify "5b43" -b   # Edit body
-```
-
-> If editor is `nul`, text is overwritten; with `vim/nano`, it's in-place.
-
-### Reorganize Notes
+### Modify a note
 
 ```bash
-$ ntm organize "5b43" "ff46"   # Move 5b43 into ff46
-$ ntm organize "5b43" .        # Move to root
-$ ntm organize "5b43" up       # Move among siblings
+ntm modify "5b43" -t "new_tag" -c "new comment"
+ntm modify "5b43" -b
 ```
 
-### Remove a Note
+> If the editor is `nul`, the text is overwritten; with `vim/nano`, it is edited in place.
+
+### Reorganize nodes
 
 ```bash
-$ ntm remove -h "5b43"
+ntm organize "5b43" "ff46"
+ntm organize "5b43" .
+ntm organize "5b43" up
 ```
 
-⚠️ **Warning:** Deletion is recursive — descendants will also be deleted!
+### Delete a note
+
+```bash
+ntm remove -h "5b43"
+```
+
+⚠️ **Warning:** Removal is recursive — all descendants will also be deleted.
 
 ---
 
 ## ⚙️ SETTINGS
 
-### Set Editor
+### Set editor
 
-You can choose: `nul`, `vim`, or `nano`.
-
-```bash
-$ ntm editor vim
-```
-
-### Add Archive File
-
-Add a new file with the `add file` command:
+Choose between: `nul`, `vim`, `nano`.
 
 ```bash
-$ ntm add file "$HOME/path/new_notes.X" -c "2024 Notes"
+ntm editor vim
 ```
 
-### View Available Files
+### Add archive file
 
 ```bash
-$ ntm view file
+ntm add file "$HOME/path/new_notes.X" -c "Notes 2024"
 ```
 
-### Set Active File
+### View available archive files
 
 ```bash
-$ ntm setting 0
+ntm view file
 ```
 
-> The index is shown with `view file`.
+### Set active file
+
+```bash
+ntm setting 0
+```
+
+> The index is visible via `view file`.
 
 ---
 
 ## 🛡️ BACKUP
 
 ```bash
-$ ntm backup
+ntm backup
 ```
 
-Creates a backup of the active note file.
+Creates a backup copy of the active file.
 
 ---
 
 ## ❓ HELP
 
 ```bash
-$ ntm help
+ntm help
 ```
+
+---
+
+## 🐚 Zsh Shell
+
+NotaMy includes an optional Zsh wrapper that adds useful functionality without modifying the main program.
+
+The wrapper improves output handling and introduces commands that simplify working with note files and long texts.
+
+---
+
+### Automatic output handling with `bat`
+
+Some commands, for example:
+
+```bash
+ntm view note -b
+```
+
+may produce long output that is difficult to read directly in the shell.
+
+Normally you would need:
+
+```bash
+ntm view note -b | bat
+```
+
+The wrapper automatically redirects output to `bat` when appropriate, improving:
+
+* readability
+* pagination
+* syntax highlighting
+* navigation
+
+To force direct stdout output (without `bat`), use:
+
+```bash
+ntm view note -b | cat
+```
+
+---
+
+### Temporary context switching
+
+The wrapper allows you to use a different note file temporarily without permanently changing the active context.
+
+Standard scenario (assuming you are in file 5):
+
+```bash
+ntm setting 1
+ntm view note
+ntm setting 5
+```
+
+With the wrapper:
+
+```bash
+ntm 1 view note
+```
+
+File `1` is used only for that execution, keeping the current context unchanged.
+
+---
+
+### Interactive search with `fview` (fzf + bat)
+
+The `fview` function allows interactive searching within note bodies using `fzf`.
+
+Basic example:
+
+```bash
+ntm view note -b
+```
+
+For long texts:
+
+```bash
+ntm view note -b | fview
+```
+
+An `fzf` session starts:
+
+1. Type the word or phrase to search
+2. Select the desired line
+3. Press `Enter`
+
+The output reopens in standard `bat` view, positioned on the selected line.
+
+---
+
+> ⚠️ The Zsh wrapper is completely optional.
+> NotaMy works correctly without it.
 
 ---
 
 ## ✅ FINAL NOTES
 
-* Tags and hashes are case-insensitive
-* You can use abbreviations as long as they are unambiguous
-* Running the program as `ntm_nc` enables **no color** mode
+* Tags and hashes are case-insensitive.
+* Abbreviations are allowed if unambiguous.
+* Running `ntm_nc` starts the program in no-color mode (no ANSI escape sequences).
 
 ---
 
 ## 📁 CONFIGURATION
 
-You can customize the program via:
+NotaMy behavior can be customized via the configuration file:
 
 ```
 ~/.config/ntm.conf
 ```
 
-In this file, you can configure:
+You can configure:
 
-* Text UI color schemes
-* Default text editor
+* Interface colors
+* Default editor
 * Default file paths
 
 ---
-

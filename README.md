@@ -1,118 +1,249 @@
 
------
+| 🇬🇧 Inglese | 🇮🇹  [Italiano](docs/it/README.md) |
+|-----------|----------|
+
+---
 
 # 🧠 NotaMy
 
-Terminal-based note manager with hierarchical tagging and file linking
+![DEMO](images/demo.gif)
 
------
+NotaMy is a hierarchical terminal-based technical note manager designed to reduce the mental cost of context switching for those working on long-term analysis tasks (pentesting, reverse engineering, wargames).
 
-## 📖 Program Description
+---
 
-NotaMy is a Linux command-line application designed to simplify the management and organization of notes and important information. It offers an intuitive interface for creating, categorizing, and viewing notes, allowing users to create a hierarchical structure using custom tags.
+## 🎯 Why NotaMy Was Created
 
------
+When I started working on pentesting activities and binary analysis, I quickly realized something:
 
-## ✨ Main Features
+**The problem is not taking notes — it's managing them over time.**
 
-  - **Note Creation:**
-    Users can create notes with comments, text, and file paths, offering a comprehensive and context-aware overview.
+An analysis can last days or months. During that time, you accumulate memory addresses, test outputs, disassemblies, suspicious behaviors, failed attempts, ideas to verify — and all of this often ends up scattered across files and folders.
 
-  - **Hierarchical Organization:**
-    Using tags, the program allows notes to be organized into tree-like structures, enabling flexible and customized categorization.
+The result? Confusion. Continuously searching for information across scattered files interrupts mental flow and slows down the investigation.
 
-  - **File Links:**
-    Notes can be associated with specific files, creating direct links for quick and efficient access to related resources.
+**NotaMy was created to remove this friction**: reducing the cost of context switching while keeping all information shell-accessible, organized, and searchable.
 
-  - **Terminal-Friendly Interface:**
-    The program is designed for command-line interaction, offering a fast, streamlined, and distraction-free experience.
+---
 
------
+## 🧩 What Is NotaMy
 
-## 📸 Output Examples
+NotaMy is not a text editor.
+It is not a markdown system.
+It is not a graphical application.
 
-![Output Examples](images/Screenshot_ntm.png)
+It is a minimal, terminal-first system for organizing technical knowledge into note files (contexts) and hierarchical tree structures of nodes/tags.
 
-*Example of ntm displaying a hierarchical note structure and details of a selected tag (Git_Basics).*
+### ⚙️ Key Features:
 
------
+* Multiple note files (contexts) with fast context switching
+* Hierarchical node structure with tags, comments, extended text, keywords, and file references
+* Structured search (by tag, keyword, content)
+* Fully keyboard-driven workflow
+* Designed for long and complex technical workflows
 
-## 💡 Practical Applications
+---
 
-  - **Penetration Testing:**
-    NotaMy is an valuable tool during the information-gathering phase of penetration testing, allowing operators to effectively store discoveries and access them quickly when needed.
+## 🗂️ The Core Concept
 
-  - **Software Development:**
-    Developers can use the program to record implementation details, bug fixes, and link specific notes to parts of the code.
+Each note file represents a project or investigation. Switching files means switching mental space.
 
-  - **Project Management:**
-    In project management, the program can be used to record project details, milestones, and assign tags to specific tasks.
+Example:
 
-  - **Academic Research:**
-    Students and researchers can organize research information, annotations, and ideas in a well-structured manner, facilitating quick navigation and retrieval of data.
-
-  - **Educational Resources:**
-    In educational settings, the program can be used to organize educational material, lessons, and links to external resources.
-
-  - **System Administration:**
-    For system administrators, it can be a valuable tool for recording network configurations, important scripts, and maintenance details.
-
-  - **Creativity and Writing:**
-    Writers and creatives may find it useful to note ideas, text fragments, and plot details in an organized manner.
-
-  - **Password Manager:**
-    With protected mode, it can also serve as a lightweight password manager.
-
-The program's versatility allows users to adapt it to a wide range of contexts where structured data management is essential, facilitating the rapid consultation of previously saved information.
-
------
-
-## ⬇️ Download and Compilation
-
-```sh
-   git clone https://github.com/IMprojtech/NotaMy.git
-   cd NotaMy
-   make
-   ./bin/ntm
+```bash
+ntm view file
 ```
 
------
+![Output Examples](images/View_File.png)
 
-## 🔗 Making `NotaMy` Globally Available
+You can switch context with:
 
-After you compile `ntm`, you may want to run it from any directory without typing its full path. Here is a common approach:
+```bash
+ntm setting 2
+```
 
-### Install to a directory already in your PATH
+---
+
+## 🌳 Hierarchical Structure
+
+Notes are organized as nodes in a tree. Each node can contain:
+
+* Tag (main keyword)
+* Comment (visible post-it in the tree)
+* Long text body
+* File references
+* Keywords for search
+
+You can store a post-it or an entire book. All in the same place.
+
+Example:
+
+```bash
+ntm view note
+```
+
+![Output Examples"](images/View_Note.png)
+
+**#** indicates that the note contains expandable text.
+
+You can expand each node to view its content:
+
+```bash
+ntm view note -b
+```
+
+![Output Examples](images/View_Note_Body.png)
+
+---
+
+## 🔄 Workflow (How I Use It)
+
+* I create or select the note file (context).
+* I add a node with tag and comment:
+
+```bash
+ntm add note -t "TAG" -c "Short comment"
+```
+
+* If needed, I write a longer text using the configured editor (vim by default):
+
+```bash
+ntm add note -t "TAG" -c "Comment" -b
+```
+
+The editor opens, I save and exit, and the body is inserted into the note.
+
+* I link files (exploit, binary, config) directly to the note and use keywords to quickly retrieve everything.
+
+---
+
+## 👤 Who It’s For
+
+NotaMy is designed for those who:
+
+* live in the terminal
+* work on long and complex technical tasks
+* manage multiple projects simultaneously
+* want structure without graphical interfaces
+* prefer keyboard over mouse
+
+---
+
+## 🚫 Who It’s NOT For
+
+It’s probably not for you if:
+
+* you want cloud synchronization
+* you need multi-user collaboration
+* you want a modern graphical interface
+* you want to write markdown documents
+
+NotaMy is minimal and focused.
+
+---
+
+## 📝 Brief History
+
+NotaMy was born from a personal need:
+
+To reduce the mental cost of context switching.
+
+Notes are not the problem. Complexity is.
+
+In 2020, I started with a basic version called "Note Management": simple structured text.
+It was already useful. Then came MemoKeeper and MemoKeeperX, with separate files and tags.
+Over time, it became part of my daily workflow: pentesting, studying, ideas, and small projects.
+
+NotaMy is the mature version of that workflow: minimal, reliable, and adapted to the way I work.
+
+> Want to know why and how NotaMy was born? Read the project's [PHILOSOPHY](docs/en/philosophy.md).
+
+---
+
+## 🚀 Installation
+
+```bash
+git clone https://github.com/IMprojtech/NotaMy.git
+cd NotaMy
+make
+./bin/ntm
+```
+
+### Add `NotaMy` to Your PATH
+
+After compiling `ntm`, you may want to run it from anywhere without typing the full path. Here’s a common approach:
+
+### Install in a Directory Already in Your PATH
 
 1. Copy or move the compiled binary to a standard location, for example:
 
-```sh
-   sudo cp ./bin/ntm /usr/local/bin/
-   sudo cp ./bin/ntm_nc /usr/local/bin/
+```bash
+sudo cp ./bin/ntm /usr/local/bin/
+sudo cp ./bin/ntm_nc /usr/local/bin/
 ```
 
-or, if you prefer a user-local install (no `sudo` needed):
+Or, if you prefer a local installation (without `sudo`):
 
-```sh
-   mkdir -p "$HOME/.local/bin"
-   cp ./bin/ntm "$HOME/.local/bin/"
-   cp ./bin/ntm_nc "$HOME/.local/bin/"
+```bash
+mkdir -p "$HOME/.local/bin"
+cp ./bin/ntm "$HOME/.local/bin/"
+cp ./bin/ntm_nc "$HOME/.local/bin/"
 ```
 
-Ensure that this directory is in your `PATH`. Most Linux distributions include `/usr/local/bin` by default. If you used `~/.local/bin`, make sure your shell initialization file adds it to `PATH`. For example, in `~/.bashrc` or `~/.zshrc`:
+Make sure that directory is in your `PATH`. Most Linux distributions include `/usr/local/bin` by default. If you used `~/.local/bin`, ensure your shell initialization file adds it to the `PATH`. For example, in `~/.bashrc` or `~/.zshrc`:
 
-```sh
-   # Add this if not already present:
-   export PATH="$HOME/.local/bin:$PATH"
+```bash
+# Add this if not already present:
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
-You can also simply add the bin directory of the project to your shell initialization file. For example:
+Alternatively, you can directly add the `bin` directory to your shell initialization file:
 
-```sh
+```bash
 export PATH="$HOME/path/to/NotaMy/bin:$PATH"
 ```
 
------
+---
+
+## 🐚 Optional Zsh Integration
+
+NotaMy provides an optional Zsh wrapper that enhances the user experience without modifying the core C program.
+
+The wrapper adds:
+
+* Wrapped `ntm` command with improved output handling
+* Automatic pagination via `bat`
+* Proper TTY detection
+* `fview` function for interactive note viewing (fzf + bat)
+* `nocolor` function to remove ANSI escape sequences
+* Temporary note file switching via numeric prefix
+
+### Temporary Note File Switching
+
+The wrapper allows you to temporarily switch the active file by placing its number before the command:
+
+```bash
+ntm 1 view note
+```
+
+### Installation
+
+Add the plugin file to your `~/.zshrc`:
+
+```bash
+source /path/to/NotaMy/shell/zsh/notamy.plugin.zsh
+```
+
+Then reload your shell:
+
+```bash
+source ~/.zshrc
+```
+
+> ⚠️ Zsh integration is completely optional.
+> The core C application works independently.
+
+---
 
 ## 📘 Documentation
 
@@ -120,21 +251,16 @@ A complete user manual is available with installation instructions, usage exampl
 
 📄 [Read the NotaMy Manual](docs/en/manual.md)
 
------
+---
 
 ## ⚖️ License
 
-This program is distributed under the terms of the GNU General Public License (GPL), ensuring the freedom to redistribute and modify the software in accordance with free software standards.
+This program is distributed under the terms of the GNU General Public License (GPL), ensuring the freedom to redistribute and modify the software according to free software standards.
 
------
+---
 
-##  ✍️ Author
+## ✍️ Author
 
 Written by Catoni Mirko (`IMprojtech`)
 
------
-
-## 🌍 Available Languages
-
-- 🇬🇧 English (this page)
-- 🇮🇹 [Italiano](docs/it/README.md)
+---
