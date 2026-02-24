@@ -59,7 +59,7 @@ void edit( AppGlobal *app ) {
 
     FILE *fp;
 
-    if ( ( fp = fopen( "Edit.tmp", "wb" ) ) == NULL ) {
+    if ( ( fp = fopen( "Edit.tmp", "ab" ) ) == NULL ) {
         fprintf( stderr, "[ERROR] file Edit.tmp creation failed\n" );
         exit( EXIT_FAILURE );
     }
